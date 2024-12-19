@@ -57,9 +57,7 @@ resource "aws_api_gateway_stage" "this" {
   variables             = var.stage_variables
   xray_tracing_enabled  = var.xray_tracing_enabled
   
-  depends_on = [
-    aws_api_gateway_deployment.this
-  ]
+ 
   dynamic "access_log_settings" {
     for_each = aws_cloudwatch_log_group.this.arn != null && var.access_log_format != null ? [true] : []
 
@@ -75,6 +73,7 @@ resource "aws_api_gateway_stage" "this" {
       percent_traffic          = var.percent_traffic
       stage_variable_overrides = var.stage_variable_overrides
       use_stage_cache          = var.use_stage_cache
+      deployment_id = aws_api_gateway_deployment.this[count.index].id
     }
   }
   lifecycle {
