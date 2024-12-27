@@ -221,6 +221,7 @@ variable "usage_plans" {
       quota_limit  = number
       quota_offset = number
       quota_period = string
+      tags         = map(string)
       stages       = list(string)
     })
   )
@@ -232,6 +233,7 @@ variable "usage_plans" {
     quota_offset = null
     quota_period = null
     rate_limit   = null
+    tags         = null
     stages       = [null]
   }]
 }

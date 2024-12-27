@@ -127,6 +127,7 @@ resource "aws_api_gateway_usage_plan" "this" {
       quota_offset = key.quota_offset
       quota_period = key.quota_period
       stages       = key.stages
+      tags         = key.tags
     }
     if var.create_usage_plan == true && length(var.stage_names) > 0
   }
