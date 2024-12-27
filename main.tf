@@ -134,6 +134,7 @@ resource "aws_api_gateway_usage_plan" "this" {
 
   name        = var.client_name == null ? "${each.value.name}" : "${each.value.name}"
   description = var.client_name == null ? "${each.value.description}" : "${each.value.description} for ${var.client_name}."
+  tags = each.value.tags
   dynamic "api_stages" {
     for_each = each.value.stages
     content {
